@@ -4,6 +4,7 @@ import './styles/index.scss'
 
 import mapboxgl from 'mapbox-gl';
 
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/'
 const COLLECTION_URL = 'https://orga.volksentscheid-transparenz.de/api/collection/'
 
 function getData (url = '') {
@@ -156,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return 0;
   }
 
-  const dataReady = getData(COLLECTION_URL)
+  const dataReady = getData(PROXY_URL + COLLECTION_URL)
   Promise.all([dataReady, mapLoaded, ...loadIcons]).then((promiseResults) => {
     const data = promiseResults[0]
     map.setLayoutProperty('country-label', 'text-field', ['get', 'name_de']);
