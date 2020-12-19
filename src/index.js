@@ -109,7 +109,7 @@ var bounds = [
   [13.8, 52.7]  // Northeast coordinates
 ];
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoib2tmZGUiLCJhIjoiY2p4dzFwcDZiMGE2YjNjcGZvcHR0a2RhNSJ9.lKwaDaYgB-SX7eYJ6tmxLA';
+mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
 const map = new mapboxgl.Map({
   center: [13.4, 52.5],
   zoom: 10,
