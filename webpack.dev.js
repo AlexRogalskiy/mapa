@@ -1,7 +1,12 @@
 const path = require('path');
 
+const DefinePlugin = require('webpack').DefinePlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+var dotenv = require("dotenv").config({
+  path: `.env`,
+});
 
 module.exports = {
     devtool: 'eval-cheap-module-source-map',
@@ -85,6 +90,10 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             { from: './src/assets', to: 'public' }
-        ])
+        ]),
+		new DefinePlugin({
+            "process.env": dotenv.parsed,
+			"REACT_APP_MAPBOX_ACCESS_TOKEN": JSON.stringify(process.env.REACT_APP_MAPBOX_ACCESS_TOKEN)
+        })
     ]
 };

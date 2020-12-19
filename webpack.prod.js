@@ -1,5 +1,6 @@
 const path = require('path');
 
+const DefinePlugin = require('webpack').DefinePlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin'); //installed via npm
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -7,6 +8,10 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const buildPath = path.resolve(__dirname, 'dist');
+
+var dotenv = require("dotenv").config({
+  path: `.env`,
+});
 
 module.exports = {
     devtool: 'source-map',
@@ -109,6 +114,10 @@ module.exports = {
                 discardUnused: false
             },
             canPrint: true
+        }),
+		new DefinePlugin({
+            "process.env": dotenv.parsed,
+			"REACT_APP_MAPBOX_ACCESS_TOKEN": JSON.stringify(process.env.REACT_APP_MAPBOX_ACCESS_TOKEN)
         })
     ]
 };

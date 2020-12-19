@@ -109,7 +109,7 @@ var bounds = [
   [13.8, 52.7]  // Northeast coordinates
 ];
 
-mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
+mapboxgl.accessToken = REACT_APP_MAPBOX_ACCESS_TOKEN;
 const map = new mapboxgl.Map({
   center: [13.4, 52.5],
   zoom: 10,
